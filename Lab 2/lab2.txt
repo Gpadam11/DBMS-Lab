@@ -1,0 +1,474 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Tue Jan 24 09:24:00 2023
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect c2105460
+Enter password:
+Connected.
+SQL> spool on;
+SQL> create table EMP(empno number, ename varchar2(30), job number);
+
+Table created.
+
+SQL> desc EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER
+ ENAME                                              VARCHAR2(30)
+ JOB                                                NUMBER
+
+SQL> create table DEPT(dname varchar2(30), dno number, location varchar2(50));
+
+Table created.
+
+SQL> desc DEPT
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DNAME                                              VARCHAR2(30)
+ DNO                                                NUMBER
+ LOCATION                                           VARCHAR2(50)
+
+SQL> ALTER table EMP ADD(MGR number);
+
+Table altered.
+
+SQL> desc EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER
+ ENAME                                              VARCHAR2(30)
+ JOB                                                NUMBER
+ MGR                                                NUMBER
+
+SQL> ALTER table EMP ADD(HIREDATE date, SALARY number);
+
+Table altered.
+
+SQL> desc table EMP
+Usage: DESCRIBE [schema.]object[@db_link]
+SQL>
+SQL> desc EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER
+ ENAME                                              VARCHAR2(30)
+ JOB                                                NUMBER
+ MGR                                                NUMBER
+ HIREDATE                                           DATE
+ SALARY                                             NUMBER
+
+SQL> Alter table EMP MODIFY(ename varchar2(40));
+
+Table altered.
+
+SQL> desc EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER
+ ENAME                                              VARCHAR2(40)
+ JOB                                                NUMBER
+ MGR                                                NUMBER
+ HIREDATE                                           DATE
+ SALARY                                             NUMBER
+
+SQL> ALTER table EMP MODIFY(job varchar2(20));
+
+Table altered.
+
+SQL> alter table EMP add(bdate date);
+
+Table altered.
+
+SQL> desc EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER
+ ENAME                                              VARCHAR2(40)
+ JOB                                                VARCHAR2(20)
+ MGR                                                NUMBER
+ HIREDATE                                           DATE
+ SALARY                                             NUMBER
+ BDATE                                              DATE
+
+SQL> alter table EMP add(commission number);
+
+Table altered.
+
+SQL>
+SQL> desc EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER
+ ENAME                                              VARCHAR2(40)
+ JOB                                                VARCHAR2(20)
+ MGR                                                NUMBER
+ HIREDATE                                           DATE
+ SALARY                                             NUMBER
+ BDATE                                              DATE
+ COMMISSION                                         NUMBER
+
+SQL> alter table EMP drop bdate;
+alter table EMP drop bdate
+                     *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> ALTER table EMP DROP bdate
+  2  ALTER table EMP DROP bdate;
+ALTER table EMP DROP bdate
+                     *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> desc EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER
+ ENAME                                              VARCHAR2(40)
+ JOB                                                VARCHAR2(20)
+ MGR                                                NUMBER
+ HIREDATE                                           DATE
+ SALARY                                             NUMBER
+ BDATE                                              DATE
+ COMMISSION                                         NUMBER
+
+SQL> ALTER table EMP DROP COLUMN bdate;
+
+Table altered.
+
+SQL> desc EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER
+ ENAME                                              VARCHAR2(40)
+ JOB                                                VARCHAR2(20)
+ MGR                                                NUMBER
+ HIREDATE                                           DATE
+ SALARY                                             NUMBER
+ COMMISSION                                         NUMBER
+
+SQL> alter table EMP add(deptnum number);
+
+Table altered.
+
+SQL> RENAME deptnum TO deptno;
+RENAME deptnum TO deptno
+*
+ERROR at line 1:
+ORA-04043: object DEPTNUM does not exist
+
+
+SQL> desc EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER
+ ENAME                                              VARCHAR2(40)
+ JOB                                                VARCHAR2(20)
+ MGR                                                NUMBER
+ HIREDATE                                           DATE
+ SALARY                                             NUMBER
+ COMMISSION                                         NUMBER
+ DEPTNUM                                            NUMBER
+
+SQL> ALTER table EMP RENAME COLUMN deptnum TO deptno;
+
+Table altered.
+
+SQL> create table Faculty(Fname varchar2(10), Desg varchar2(10), Dept varchar2(10));
+
+Table created.
+
+SQL> desc Faculty
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FNAME                                              VARCHAR2(10)
+ DESG                                               VARCHAR2(10)
+ DEPT                                               VARCHAR2(10)
+
+SQL> DROP table Faculty;
+
+Table dropped.
+
+SQL> SELECT *FROM Faculty;
+SELECT *FROM Faculty
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> desc Faculty
+ERROR:
+ORA-04043: object Faculty does not exist
+
+
+SQL> desc EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER
+ ENAME                                              VARCHAR2(40)
+ JOB                                                VARCHAR2(20)
+ MGR                                                NUMBER
+ HIREDATE                                           DATE
+ SALARY                                             NUMBER
+ COMMISSION                                         NUMBER
+ DEPTNO                                             NUMBER
+
+SQL> INSERT INTO EMP(empno number, ename varchar2(40), job varchar2(20), mgr number, hiredate date, salary number, commission number, deptno number)
+  2  VALUES(7369, 'SMITH', 'CLERK', 7902, 17-DEC-80, 800, /, 20);
+INSERT INTO EMP(empno number, ename varchar2(40), job varchar2(20), mgr number, hiredate date, salary number, commission number, deptno number)
+                      *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> INSERT INTO EMP(empno, ename, job, mgr, hiredate, salary, commission, deptno) VALUES(7369, 'SMITH', 'CLERK', 7902, 17-DEC-80, 800, /, 20);
+INSERT INTO EMP(empno, ename, job, mgr, hiredate, salary, commission, deptno) VALUES(7369, 'SMITH', 'CLERK', 7902, 17-DEC-80, 800, /, 20)
+                                                                                                                                   *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> INSERT INTO EMP(&empno, '&ename', '&job', &mgr, '&hiredate', &salary, &commission, &deptno);
+Enter value for empno:
+Enter value for ename:
+Enter value for job:
+Enter value for mgr:
+Enter value for hiredate:
+Enter value for salary:
+Enter value for commission:
+Enter value for deptno:
+old   1: INSERT INTO EMP(&empno, '&ename', '&job', &mgr, '&hiredate', &salary, &commission, &deptno)
+new   1: INSERT INTO EMP(, '', '', , '', , , )
+INSERT INTO EMP(, '', '', , '', , , )
+                *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> INSERT INTO EMP(&empno, '&ename', '&job', &mgr, '&hiredate', &salary, &commission, &deptno);
+Enter value for empno: 7369
+Enter value for ename: SMITH
+Enter value for job: CLERK
+Enter value for mgr: 7902
+Enter value for hiredate: 17-DEC-80
+Enter value for salary: 800
+Enter value for commission: NULL
+Enter value for deptno: 20
+old   1: INSERT INTO EMP(&empno, '&ename', '&job', &mgr, '&hiredate', &salary, &commission, &deptno)
+new   1: INSERT INTO EMP(7369, 'SMITH', 'CLERK', 7902, '17-DEC-80', 800, NULL, 20)
+INSERT INTO EMP(7369, 'SMITH', 'CLERK', 7902, '17-DEC-80', 800, NULL, 20)
+                *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> INSERT INTO EMP VALUES(&empno, '&ename', '&job', &mgr, '&hiredate', &salary, &commission, &deptno);
+Enter value for empno: 7369
+Enter value for ename: SMITH
+Enter value for job: CLERK
+Enter value for mgr: 7902
+Enter value for hiredate: 17-DEC-80
+Enter value for salary: 800
+Enter value for commission: NULL
+Enter value for deptno: 20
+old   1: INSERT INTO EMP VALUES(&empno, '&ename', '&job', &mgr, '&hiredate', &salary, &commission, &deptno)
+new   1: INSERT INTO EMP VALUES(7369, 'SMITH', 'CLERK', 7902, '17-DEC-80', 800, NULL, 20)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 7499
+Enter value for ename: ALLEN
+Enter value for job: SALESMAN
+Enter value for mgr: 7698
+Enter value for hiredate: 20-FEB-81
+Enter value for salary: 1600
+Enter value for commission: 300
+Enter value for deptno: 30
+old   1: INSERT INTO EMP VALUES(&empno, '&ename', '&job', &mgr, '&hiredate', &salary, &commission, &deptno)
+new   1: INSERT INTO EMP VALUES(7499, 'ALLEN', 'SALESMAN', 7698, '20-FEB-81', 1600, 300, 30)
+
+1 row created.
+
+SQL> desc EMP
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                              NUMBER
+ ENAME                                              VARCHAR2(40)
+ JOB                                                VARCHAR2(20)
+ MGR                                                NUMBER
+ HIREDATE                                           DATE
+ SALARY                                             NUMBER
+ COMMISSION                                         NUMBER
+ DEPTNO                                             NUMBER
+
+SQL> SELECT *FROM EMP;
+
+     EMPNO ENAME                                    JOB
+---------- ---------------------------------------- --------------------
+       MGR HIREDATE      SALARY COMMISSION     DEPTNO
+---------- --------- ---------- ---------- ----------
+      7369 SMITH                                    CLERK
+      7902 17-DEC-80        800                    20
+
+      7499 ALLEN                                    SALESMAN
+      7698 20-FEB-81       1600        300         30
+
+
+SQL> /
+
+     EMPNO ENAME                                    JOB
+---------- ---------------------------------------- --------------------
+       MGR HIREDATE      SALARY COMMISSION     DEPTNO
+---------- --------- ---------- ---------- ----------
+      7369 SMITH                                    CLERK
+      7902 17-DEC-80        800                    20
+
+      7499 ALLEN                                    SALESMAN
+      7698 20-FEB-81       1600        300         30
+
+
+SQL> INSERT INTO EMP VALUES(&empno, '&ename', '&job', &mgr, '&hiredate', &salary, &commission, &deptno);
+Enter value for empno: 7521
+Enter value for ename: WARD
+Enter value for job: SALESMAN
+Enter value for mgr: 7698
+Enter value for hiredate: 22-FEB-81
+Enter value for salary: 1250
+Enter value for commission: 500
+Enter value for deptno: 30
+old   1: INSERT INTO EMP VALUES(&empno, '&ename', '&job', &mgr, '&hiredate', &salary, &commission, &deptno)
+new   1: INSERT INTO EMP VALUES(7521, 'WARD', 'SALESMAN', 7698, '22-FEB-81', 1250, 500, 30)
+
+1 row created.
+
+SQL> /
+Enter value for empno: 7566
+Enter value for ename: JONES
+Enter value for job: MANAGER
+Enter value for mgr: 7839
+Enter value for hiredate: 02-APR-81
+Enter value for salary: 2975
+Enter value for commission: NULL
+Enter value for deptno: 20
+old   1: INSERT INTO EMP VALUES(&empno, '&ename', '&job', &mgr, '&hiredate', &salary, &commission, &deptno)
+new   1: INSERT INTO EMP VALUES(7566, 'JONES', 'MANAGER', 7839, '02-APR-81', 2975, NULL, 20)
+
+1 row created.
+
+SQL> SELECT *FROM EMP;
+
+     EMPNO ENAME                                    JOB
+---------- ---------------------------------------- --------------------
+       MGR HIREDATE      SALARY COMMISSION     DEPTNO
+---------- --------- ---------- ---------- ----------
+      7369 SMITH                                    CLERK
+      7902 17-DEC-80        800                    20
+
+      7499 ALLEN                                    SALESMAN
+      7698 20-FEB-81       1600        300         30
+
+      7521 WARD                                     SALESMAN
+      7698 22-FEB-81       1250        500         30
+
+
+     EMPNO ENAME                                    JOB
+---------- ---------------------------------------- --------------------
+       MGR HIREDATE      SALARY COMMISSION     DEPTNO
+---------- --------- ---------- ---------- ----------
+      7566 JONES                                    MANAGER
+      7839 02-APR-81       2975                    20
+
+
+SQL> INSERT INTO EMP VALUES('&dname', &dno, '&location');
+Enter value for dname: accounting
+Enter value for dno: 10
+Enter value for location: new york
+old   1: INSERT INTO EMP VALUES('&dname', &dno, '&location')
+new   1: INSERT INTO EMP VALUES('accounting', 10, 'new york')
+INSERT INTO EMP VALUES('accounting', 10, 'new york')
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> desc dept
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DNAME                                              VARCHAR2(30)
+ DNO                                                NUMBER
+ LOCATION                                           VARCHAR2(50)
+
+SQL> INSERT INTO DEPT VALUES('&dname', &dno, '&location');
+Enter value for dname: accounting
+Enter value for dno: 10
+Enter value for location: new york
+old   1: INSERT INTO DEPT VALUES('&dname', &dno, '&location')
+new   1: INSERT INTO DEPT VALUES('accounting', 10, 'new york')
+
+1 row created.
+
+SQL> /
+Enter value for dname: research
+Enter value for dno: 20
+Enter value for location: dallas
+old   1: INSERT INTO DEPT VALUES('&dname', &dno, '&location')
+new   1: INSERT INTO DEPT VALUES('research', 20, 'dallas')
+
+1 row created.
+
+SQL> /
+Enter value for dname: sales
+Enter value for dno: 30
+Enter value for location: chicago
+old   1: INSERT INTO DEPT VALUES('&dname', &dno, '&location')
+new   1: INSERT INTO DEPT VALUES('sales', 30, 'chicago')
+
+1 row created.
+
+SQL> /
+Enter value for dname: operation
+Enter value for dno: 40
+Enter value for location: boston
+old   1: INSERT INTO DEPT VALUES('&dname', &dno, '&location')
+new   1: INSERT INTO DEPT VALUES('operation', 40, 'boston')
+
+1 row created.
+
+SQL> SELECT *FROM DEPT;
+
+DNAME                                 DNO
+------------------------------ ----------
+LOCATION
+--------------------------------------------------
+accounting                             10
+new york
+
+research                               20
+dallas
+
+sales                                  30
+chicago
+
+
+DNAME                                 DNO
+------------------------------ ----------
+LOCATION
+--------------------------------------------------
+operation                              40
+boston
+
+
+SQL> commit
+  2  commit;
+commit
+*
+ERROR at line 2:
+ORA-02185: a token other than WORK follows COMMIT
+
+
+SQL> spool off
+SQL>
