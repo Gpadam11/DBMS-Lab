@@ -1,0 +1,98 @@
+SQL> create table emp12(empid number, empname varchar2(15) NOT NULL, phno number UNIQUE, age number CHECK(age>18), emp_country varchar2(15) DEFAULT 'India', primary key(empid));
+
+Table created.
+
+SQL> desc emp12
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL NUMBER
+ EMPNAME                                   NOT NULL VARCHAR2(15)
+ PHNO                                               NUMBER
+ AGE                                                NUMBER
+ EMP_COUNTRY                                        VARCHAR2(15)
+
+SQL> select *from emp12;
+
+no rows selected
+
+SQL> insert into emp12 values(112, 'Michael', 234, 19, 'Russia');
+
+1 row created.
+
+SQL> select *from emp12;
+
+     EMPID EMPNAME               PHNO        AGE EMP_COUNTRY                    
+---------- --------------- ---------- ---------- ---------------                
+       112 Michael                234         19 Russia                         
+
+SQL> insert into emp12 values(113, 'Abdul', 913, 25);
+insert into emp12 values(113, 'Abdul', 913, 25)
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> insert into emp12 values(113, 'Abdul', 913, 25, ' ');
+
+1 row created.
+
+SQL> select *from emp12;
+
+     EMPID EMPNAME               PHNO        AGE EMP_COUNTRY                    
+---------- --------------- ---------- ---------- ---------------                
+       112 Michael                234         19 Russia                         
+       113 Abdul                  913         25                                
+
+SQL> insert into emp12 values(131, ' ', 678, 43, 'USA');
+
+1 row created.
+
+SQL> insert into emp12 values(131, null, 678, 43, 'USA');
+insert into emp12 values(131, null, 678, 43, 'USA')
+                              *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("C2105460"."EMP12"."EMPNAME") 
+
+
+SQL> insert into emp12 values(132, 'Riya', 234, 22, 'India');
+insert into emp12 values(132, 'Riya', 234, 22, 'India')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (C2105460.SYS_C008716) violated 
+
+
+SQL> insert into emp12 values(113, 'Lily', 876, 60, 'UK');
+insert into emp12 values(113, 'Lily', 876, 60, 'UK')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (C2105460.SYS_C008715) violated 
+
+
+SQL> insert into emp12 values(127, 'Dino', 777, 17, 'Italy');
+insert into emp12 values(127, 'Dino', 777, 17, 'Italy')
+*
+ERROR at line 1:
+ORA-02290: check constraint (C2105460.SYS_C008714) violated 
+
+
+SQL> insert into emp12 values(117, 'Indira', 676, null, null);
+
+1 row created.
+
+SQL> select *from emp12;
+
+     EMPID EMPNAME               PHNO        AGE EMP_COUNTRY                    
+---------- --------------- ---------- ---------- ---------------                
+       112 Michael                234         19 Russia                         
+       113 Abdul                  913         25                                
+       131                        678         43 USA                            
+       117 Indira                 676                                           
+
+SQL> alter table emp12 drop constraint check;
+alter table emp12 drop constraint check
+                                  *
+ERROR at line 1:
+ORA-02250: missing or invalid constraint name 
+
+
+SQL> spool off;

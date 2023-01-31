@@ -1,0 +1,179 @@
+SQL> create table emp12(empid number constraint c1 primary key, empname varchar2(40) constraint c2 NOT NULL, phno number constraint c3 unique, age number constraint c4 check(age>=18), emp_country varchar2(40) default 'india');
+create table emp12(empid number constraint c1 primary key, empname varchar2(40) constraint c2 NOT NULL, phno number constraint c3 unique, age number constraint c4 check(age>=18), emp_country varchar2(40) default 'india')
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> create table emp11(empid number constraint c1 primary key, empname varchar2(40) constraint c2 NOT NULL, phno number constraint c3 unique, age number constraint c4 check(age>=18), emp_country varchar2(40) default 'india');
+
+Table created.
+
+SQL> desc emp11
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL NUMBER
+ EMPNAME                                   NOT NULL VARCHAR2(40)
+ PHNO                                               NUMBER
+ AGE                                                NUMBER
+ EMP_COUNTRY                                        VARCHAR2(40)
+
+SQL> insert into emp12 values(112, 'Michael', 234, 19, 'Russia');
+insert into emp12 values(112, 'Michael', 234, 19, 'Russia')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (C2105460.SYS_C008715) violated 
+
+
+SQL> insert into emp11 values(112, 'Michael', 234, 19, 'Russia');
+
+1 row created.
+
+SQL> insert into emp11 values(113, 'Abdul', 913, 25, null);
+
+1 row created.
+
+SQL> insert into emp11 values(131, null, 678, 43, 'USA');
+insert into emp11 values(131, null, 678, 43, 'USA')
+                              *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("C2105460"."EMP11"."EMPNAME") 
+
+
+SQL> insert into emp11 values(131,, 678, 43, 'USA');
+insert into emp11 values(131,, 678, 43, 'USA')
+                             *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> insert into emp11 values(131,null, 678, 43, 'USA');
+insert into emp11 values(131,null, 678, 43, 'USA')
+                             *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("C2105460"."EMP11"."EMPNAME") 
+
+
+SQL> insert into emp11 values(132, 'Riya', 234, 22, 'India');
+insert into emp11 values(132, 'Riya', 234, 22, 'India')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (C2105460.C3) violated 
+
+
+SQL>  insert into emp11 values(113, 'Lily', 876, 60, 'UK');
+ insert into emp11 values(113, 'Lily', 876, 60, 'UK')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (C2105460.C1) violated 
+
+
+SQL> insert into emp11 values(127, 'Dino', 777, 17, 'Italy');
+insert into emp11 values(127, 'Dino', 777, 17, 'Italy')
+*
+ERROR at line 1:
+ORA-02290: check constraint (C2105460.C4) violated 
+
+
+SQL> insert into emp11 values(117, 'Indira', 676, null, null);
+
+1 row created.
+
+SQL> select *from emp11;
+
+     EMPID EMPNAME                                        PHNO        AGE       
+---------- ---------------------------------------- ---------- ----------       
+EMP_COUNTRY                                                                     
+----------------------------------------                                        
+       112 Michael                                         234         19       
+Russia                                                                          
+                                                                                
+       113 Abdul                                           913         25       
+                                                                                
+                                                                                
+       117 Indira                                          676                  
+                                                                                
+                                                                                
+
+SQL> set linesize 200;
+SQL> select *from emp11;
+
+     EMPID EMPNAME                                        PHNO        AGE EMP_COUNTRY                                                                                                                   
+---------- ---------------------------------------- ---------- ---------- ----------------------------------------                                                                                      
+       112 Michael                                         234         19 Russia                                                                                                                        
+       113 Abdul                                           913         25                                                                                                                               
+       117 Indira                                          676                                                                                                                                          
+
+SQL> alter table emp11 drop constraint c4;
+
+Table altered.
+
+SQL> alter table emp11 modify age default 18 add constraint c5 check(age>=18 AND age<=70);
+
+Table altered.
+
+SQL> insert into emp11 values(114, 'Raj', 238, 54, 'USA');
+
+1 row created.
+
+SQL> insert into emp11 values(115, 'Abhay', 222, null, default);
+
+1 row created.
+
+SQL> select *from emp11;
+
+     EMPID EMPNAME                                        PHNO        AGE EMP_COUNTRY                                                                                                                   
+---------- ---------------------------------------- ---------- ---------- ----------------------------------------                                                                                      
+       112 Michael                                         234         19 Russia                                                                                                                        
+       113 Abdul                                           913         25                                                                                                                               
+       117 Indira                                          676                                                                                                                                          
+       114 Raj                                             238         54 USA                                                                                                                           
+       115 Abhay                                           222            india                                                                                                                         
+
+SQL> insert into emp11 values(125, 'Abhaay', 262, default, default);
+
+1 row created.
+
+SQL> select *from emp11;
+
+     EMPID EMPNAME                                        PHNO        AGE EMP_COUNTRY                                                                                                                   
+---------- ---------------------------------------- ---------- ---------- ----------------------------------------                                                                                      
+       112 Michael                                         234         19 Russia                                                                                                                        
+       113 Abdul                                           913         25                                                                                                                               
+       117 Indira                                          676                                                                                                                                          
+       114 Raj                                             238         54 USA                                                                                                                           
+       115 Abhay                                           222            india                                                                                                                         
+       125 Abhaay                                          262         18 india                                                                                                                         
+
+6 rows selected.
+
+SQL> delete from emp11 where empid=125;
+
+1 row deleted.
+
+SQL> select *from emp11;
+
+     EMPID EMPNAME                                        PHNO        AGE EMP_COUNTRY                                                                                                                   
+---------- ---------------------------------------- ---------- ---------- ----------------------------------------                                                                                      
+       112 Michael                                         234         19 Russia                                                                                                                        
+       113 Abdul                                           913         25                                                                                                                               
+       117 Indira                                          676                                                                                                                                          
+       114 Raj                                             238         54 USA                                                                                                                           
+       115 Abhay                                           222            india                                                                                                                         
+
+SQL> create table projectx(pid char constraints c6 primary key, pname varchar2(15), phead number constraint uc_px_34 unique, ploc varchar2(15) uc_px_34 unique, pmembers number default 5 constraint ck_px_5 check (pmembers<=5));
+create table projectx(pid char constraints c6 primary key, pname varchar2(15), phead number constraint uc_px_34 unique, ploc varchar2(15) uc_px_34 unique, pmembers number default 5 constraint ck_px_5 check (pmembers<=5))
+                                                                                                                                          *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table projectx(pid char constraints c6 primary key, pname varchar2(15), phead number, ploc varchar2(15), pmembers number default 5 constraint ck_px_5 check (pmembers<=5), constraint uc_pk_32 unique(phead, ploc));
+
+Table created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off;
