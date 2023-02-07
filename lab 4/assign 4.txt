@@ -1,0 +1,172 @@
+SQL> spool 'C:\Users\KIIT\Documents\DBMS\DBMS-LAB\lab 4\assignment 4.txt';
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE
+---------
+07-FEB-23
+
+SQL> SELECT LAST_DAY(SYSDATE) FROM DUAL;
+
+LAST_DAY(
+---------
+28-FEB-23
+
+SQL> SELECT NEXT_DAY(SYSDATE, 'Tuesday') FROM DUAL;
+
+NEXT_DAY(
+---------
+14-FEB-23
+
+SQL> SELECT EXTRACT(MONTH FROM SYSDATE) FROM DUAL;
+
+EXTRACT(MONTHFROMSYSDATE)
+-------------------------
+                        2
+
+SQL> SELECT EXTRACT(YEAR FROM SYSDATE) FROM DUAL;
+
+EXTRACT(YEARFROMSYSDATE)
+------------------------
+                    2023
+
+SQL> SELECT ABS(-505) FROM DUAL;
+
+ ABS(-505)
+----------
+       505
+
+SQL> SELECT CEIL(10.44), CEIL(10.50), CEIL(10.65) FROM DUAL;
+
+CEIL(10.44) CEIL(10.50) CEIL(10.65)
+----------- ----------- -----------
+         11          11          11
+
+SQL> SELECT FLOOR(10.44), FLOOR(10.50), FLOOR(10.65) FROM DUAL;
+
+FLOOR(10.44) FLOOR(10.50) FLOOR(10.65)
+------------ ------------ ------------
+          10           10           10
+
+SQL> SELECT LOG(2,10) FROM DUAL;
+
+ LOG(2,10)
+----------
+3.32192809
+
+SQL> SELECT MOD(5947,7) FROM DUAL;
+
+MOD(5947,7)
+-----------
+          4
+
+SQL> SELECT POW(8,3) FROM DUAL;
+SELECT POW(8,3) FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: "POW": invalid identifier
+
+
+SQL> SELECT POWER(8,3) FROM DUAL;
+
+POWER(8,3)
+----------
+       512
+
+SQL> SELECT SQRT(3481) FROM DUAL;
+
+SQRT(3481)
+----------
+        59
+
+SQL> SELECT ROUND(45.923,2), ROUND(45.923,0), ROUND(45.923,-1), ROUND(45.923,2), ROUND(45.923,0), ROUND(45.923,-2) FROM DUAL;
+
+ROUND(45.923,2) ROUND(45.923,0) ROUND(45.923,-1) ROUND(45.923,2) ROUND(45.923,0)
+--------------- --------------- ---------------- --------------- ---------------
+ROUND(45.923,-2)
+----------------
+          45.92              46               50           45.92              46
+               0
+
+
+SQL> SELECT - trunc(45.888,2), trunc(56.758,0),
+  2  SELECT runc(45.888,2), trunc(56.758,0),
+  3  SELECT TRUNC(45.882,2), TRUNC(56.758,0), TRUNC(49.245,-2), TRUNC(45.882,2), TRUNC(45.882,2) FROM DUAL;
+SELECT runc(45.888,2), trunc(56.758,0),
+*
+ERROR at line 2:
+ORA-00936: missing expression
+
+
+SQL> SELECT TRUNC(45.882,2), TRUNC(56.758,0), TRUNC(49.245,-2), TRUNC(45.882,2), TRUNC(45.882,2) FROM DUAL;
+
+TRUNC(45.882,2) TRUNC(56.758,0) TRUNC(49.245,-2) TRUNC(45.882,2) TRUNC(45.882,2)
+--------------- --------------- ---------------- --------------- ---------------
+          45.88              56                0           45.88           45.88
+
+SQL> SELECT SIGN(20), SIGN(-67.60), SIGN(0) FROM DUAL;
+
+  SIGN(20) SIGN(-67.60)    SIGN(0)
+---------- ------------ ----------
+         1           -1          0
+
+SQL> SELECT COS(45), SIN(45), TAN(45) FROM DUAL;
+
+   COS(45)    SIN(45)    TAN(45)
+---------- ---------- ----------
+.525321989 .850903525 1.61977519
+
+SQL> SELECT CHR(79) FROM DUAL;
+
+C
+-
+O
+
+SQL> SELECT CHR(70) FROM DUAL;
+
+C
+-
+F
+
+SQL> SELECT 'GEETIKA'||'PADAM' FROM DUAL;
+
+'GEETIKA'||'
+------------
+GEETIKAPADAM
+
+SQL> SELECT CONCAT('GEETIKA','PADAM') FROM DUAL;
+
+CONCAT('GEET
+------------
+GEETIKAPADAM
+
+SQL> SELECT INITCAP('GEETIKA') FROM DUAL;
+
+INITCAP
+-------
+Geetika
+
+SQL> SELECT UPPER('geetika') FROM DUAL;
+
+UPPER('
+-------
+GEETIKA
+
+SQL> COMMIT
+  2  SPOOL OFF;
+SPOOL OFF
+*
+ERROR at line 2:
+ORA-02185: a token other than WORK follows COMMIT
+
+
+SQL> Commit;
+
+Commit complete.
+
+SQL>
+
+
+
+
+
+SELECT Ename, Salary, Case WHEN Salary<1500 then 10 when salary>3000 then 20 end from emp;
