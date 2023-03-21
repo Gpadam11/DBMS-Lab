@@ -1,0 +1,387 @@
+SQL> create table emp06(emo_no number constraint c1 primary key, f_name varchar2(15) constraint c2 not null, l_name varchar2(15), salary number, dept_no number);
+create table emp06(emo_no number constraint c1 primary key, f_name varchar2(15) constraint c2 not null, l_name varchar2(15), salary number, dept_no number)
+                                                                                           *
+ERROR at line 1:
+ORA-02264: name already used by an existing constraint 
+
+
+SQL> create table emp06(emo_no number constraint ct primary key, f_name varchar2(15) constraint ct not null, l_name varchar2(15), salary number, dept_no number);
+create table emp06(emo_no number constraint ct primary key, f_name varchar2(15) constraint ct not null, l_name varchar2(15), salary number, dept_no number)
+                                            *
+ERROR at line 1:
+ORA-02264: name already used by an existing constraint 
+
+
+SQL> create table emp06(emo_no number constraint ct primary key, f_name varchar2(15) constraint ct not null, l_name varchar2(15), salary_ number, dept_no number);
+create table emp06(emo_no number constraint ct primary key, f_name varchar2(15) constraint ct not null, l_name varchar2(15), salary_ number, dept_no number)
+                                            *
+ERROR at line 1:
+ORA-02264: name already used by an existing constraint 
+
+
+SQL> create table emp06(emo_no number primary key, f_name varchar2(15) not null, l_name varchar2(15), salary number, dept_no number);
+
+Table created.
+
+SQL> insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no);
+Enter value for emp_no: 101
+Enter value for f_name: Jai
+Enter value for l_name: 
+Enter value for salary: 90000
+Enter value for dept_no: 1
+old   1: insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no)
+new   1: insert into emp06 values(101, 'Jai', '', 90000, 1)
+
+1 row created.
+
+SQL> insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no);
+Enter value for emp_no: 102
+Enter value for f_name: Viru
+Enter value for l_name: 
+Enter value for salary: 80000
+Enter value for dept_no: 1
+old   1: insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no)
+new   1: insert into emp06 values(102, 'Viru', '', 80000, 1)
+
+1 row created.
+
+SQL> insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no);
+Enter value for emp_no: 103
+Enter value for f_name: Gabbar
+Enter value for l_name: Singh
+Enter value for salary: 70000
+Enter value for dept_no: 2
+old   1: insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no)
+new   1: insert into emp06 values(103, 'Gabbar', 'Singh', 70000, 2)
+
+1 row created.
+
+SQL> insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no);
+Enter value for emp_no: 104
+Enter value for f_name: Basanti
+Enter value for l_name: 
+Enter value for salary: 60000
+Enter value for dept_no: 3
+old   1: insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no)
+new   1: insert into emp06 values(104, 'Basanti', '', 60000, 3)
+
+1 row created.
+
+SQL> insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no);
+Enter value for emp_no: 105
+Enter value for f_name: Ram
+Enter value for l_name: Lal
+Enter value for salary: 50000
+Enter value for dept_no: 3
+old   1: insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no)
+new   1: insert into emp06 values(105, 'Ram', 'Lal', 50000, 3)
+
+1 row created.
+
+SQL> insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no);
+Enter value for emp_no: Radha
+Enter value for f_name: Thakur
+Enter value for l_name: 30000
+Enter value for salary: 
+Enter value for dept_no: 
+old   1: insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no)
+new   1: insert into emp06 values(Radha, 'Thakur', '30000', , )
+insert into emp06 values(Radha, 'Thakur', '30000', , )
+                                                   *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no);
+Enter value for emp_no: 106
+Enter value for f_name: Radha
+Enter value for l_name: Thakur
+Enter value for salary: 30000
+Enter value for dept_no: 3
+old   1: insert into emp06 values(&emp_no, '&f_name', '&l_name', &salary, &dept_no)
+new   1: insert into emp06 values(106, 'Radha', 'Thakur', 30000, 3)
+
+1 row created.
+
+SQL> select *from table emp06;
+select *from table emp06
+                   *
+ERROR at line 1:
+ORA-00906: missing left parenthesis 
+
+
+SQL> select *from emp06;
+
+    EMO_NO F_NAME          L_NAME              SALARY    DEPT_NO                
+---------- --------------- --------------- ---------- ----------                
+       101 Jai                                  90000          1                
+       102 Viru                                 80000          1                
+       103 Gabbar          Singh                70000          2                
+       104 Basanti                              60000          3                
+       105 Ram             Lal                  50000          3                
+       106 Radha           Thakur               30000          3                
+
+6 rows selected.
+
+SQL> create table project(p_no number primary key, p_name varchar2(10), p_loc varchar2(10) default 'Mumbai';
+create table project(p_no number primary key, p_name varchar2(10), p_loc varchar2(10) default 'Mumbai'
+                                                                                                     *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table project(p_no number primary key, p_name varchar2(10), p_loc varchar2(10) default 'Mumbai');
+
+Table created.
+
+SQL> insert into project values(&p_no, '&p_name', '&p_loc);
+Enter value for p_no: 1
+Enter value for p_name: xyz
+Enter value for p_loc: pune
+old   1: insert into project values(&p_no, '&p_name', '&p_loc)
+new   1: insert into project values(1, 'xyz', 'pune)
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> insert into project values(&p_no, '&p_name', '&p_loc');
+Enter value for p_no: 1
+Enter value for p_name: xyz
+Enter value for p_loc: pune
+old   1: insert into project values(&p_no, '&p_name', '&p_loc')
+new   1: insert into project values(1, 'xyz', 'pune')
+
+1 row created.
+
+SQL> insert into project values(&p_no, '&p_name', '&p_loc');
+Enter value for p_no: 2
+Enter value for p_name: abc
+Enter value for p_loc: pune
+old   1: insert into project values(&p_no, '&p_name', '&p_loc')
+new   1: insert into project values(2, 'abc', 'pune')
+
+1 row created.
+
+SQL> insert into project values(&p_no, '&p_name', '&p_loc');
+Enter value for p_no: 3
+Enter value for p_name: ijk
+Enter value for p_loc: 
+old   1: insert into project values(&p_no, '&p_name', '&p_loc')
+new   1: insert into project values(3, 'ijk', '')
+
+1 row created.
+
+SQL> select *from project;
+
+      P_NO P_NAME     P_LOC                                                     
+---------- ---------- ----------                                                
+         1 xyz        pune                                                      
+         2 abc        pune                                                      
+         3 ijk                                                                  
+
+SQL> create table emp_proj(emp_no number, p_no number);
+
+Table created.
+
+SQL> alter table emp_proj add constraint cc primary key(emp_no, p_no);
+
+Table altered.
+
+SQL> insert into emp_proj values(&emp_no, &p_no);
+Enter value for emp_no: 101
+Enter value for p_no: 1
+old   1: insert into emp_proj values(&emp_no, &p_no)
+new   1: insert into emp_proj values(101, 1)
+
+1 row created.
+
+SQL> insert into emp_proj values(&emp_no, &p_no);
+Enter value for emp_no: 102
+Enter value for p_no: 1
+old   1: insert into emp_proj values(&emp_no, &p_no)
+new   1: insert into emp_proj values(102, 1)
+
+1 row created.
+
+SQL> insert into emp_proj values(&emp_no, &p_no);
+Enter value for emp_no: 103
+Enter value for p_no: 2
+old   1: insert into emp_proj values(&emp_no, &p_no)
+new   1: insert into emp_proj values(103, 2)
+
+1 row created.
+
+SQL> insert into emp_proj values(&emp_no, &p_no);
+Enter value for emp_no: 104
+Enter value for p_no: 2
+old   1: insert into emp_proj values(&emp_no, &p_no)
+new   1: insert into emp_proj values(104, 2)
+
+1 row created.
+
+SQL> insert into emp_proj values(&emp_no, &p_no);
+Enter value for emp_no: 101
+Enter value for p_no: 2
+old   1: insert into emp_proj values(&emp_no, &p_no)
+new   1: insert into emp_proj values(101, 2)
+
+1 row created.
+
+SQL> insert into emp_proj values(&emp_no, &p_no);
+Enter value for emp_no: 105
+Enter value for p_no: 2
+old   1: insert into emp_proj values(&emp_no, &p_no)
+new   1: insert into emp_proj values(105, 2)
+
+1 row created.
+
+SQL> select *from emp_proj;
+
+    EMP_NO       P_NO                                                           
+---------- ----------                                                           
+       101          1                                                           
+       101          2                                                           
+       102          1                                                           
+       103          2                                                           
+       104          2                                                           
+       105          2                                                           
+
+6 rows selected.
+
+SQL> insert into project('p_loc') values(default);
+insert into project('p_loc') values(default)
+                    *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> insert into project(p_loc) values(default);
+insert into project(p_loc) values(default)
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("C2105460"."PROJECT"."P_NO") 
+
+
+SQL> insert into project(p_no, 'p_name', 'p_loc') values(3, 'ijk', default);
+insert into project(p_no, 'p_name', 'p_loc') values(3, 'ijk', default)
+                          *
+ERROR at line 1:
+ORA-01747: invalid user.table.column, table.column, or column specification 
+
+
+SQL> insert into project(p_no, p_name, p_loc) values(3, 'ijk', default);
+insert into project(p_no, p_name, p_loc) values(3, 'ijk', default)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (C2105460.SYS_C008875) violated 
+
+
+SQL> insert into project values(3, 'ijk', default);
+insert into project values(3, 'ijk', default)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (C2105460.SYS_C008875) violated 
+
+
+SQL> delete from project where p_no=3;
+
+1 row deleted.
+
+SQL> select *from project;
+
+      P_NO P_NAME     P_LOC                                                     
+---------- ---------- ----------                                                
+         1 xyz        pune                                                      
+         2 abc        pune                                                      
+
+SQL> insert into project values(3, 'ijk', default);
+
+1 row created.
+
+SQL> select *from project;
+
+      P_NO P_NAME     P_LOC                                                     
+---------- ---------- ----------                                                
+         1 xyz        pune                                                      
+         2 abc        pune                                                      
+         3 ijk        Mumbai                                                    
+
+SQL> select f_name, p_name from emp06, project;
+
+F_NAME          P_NAME                                                          
+--------------- ----------                                                      
+Jai             xyz                                                             
+Viru            xyz                                                             
+Gabbar          xyz                                                             
+Basanti         xyz                                                             
+Ram             xyz                                                             
+Radha           xyz                                                             
+Jai             abc                                                             
+Viru            abc                                                             
+Gabbar          abc                                                             
+Basanti         abc                                                             
+Ram             abc                                                             
+
+F_NAME          P_NAME                                                          
+--------------- ----------                                                      
+Radha           abc                                                             
+Jai             ijk                                                             
+Viru            ijk                                                             
+Gabbar          ijk                                                             
+Basanti         ijk                                                             
+Ram             ijk                                                             
+Radha           ijk                                                             
+
+18 rows selected.
+
+SQL> alter table emp06 rename dept_no to p_no;
+alter table emp06 rename dept_no to p_no
+                         *
+ERROR at line 1:
+ORA-14155: missing PARTITION or SUBPARTITION keyword 
+
+
+SQL> select project.f_name from emp06 inner join project on emp06.dept_no=project.p_no;
+select project.f_name from emp06 inner join project on emp06.dept_no=project.p_no
+       *
+ERROR at line 1:
+ORA-00904: "PROJECT"."F_NAME": invalid identifier 
+
+
+SQL> SELECT F_name,P_name FROM EMP06,PROJECT WHERE EMP06.Dept_no=PROJECT.P_no;
+
+F_NAME          P_NAME                                                          
+--------------- ----------                                                      
+Jai             xyz                                                             
+Viru            xyz                                                             
+Gabbar          abc                                                             
+Basanti         ijk                                                             
+Ram             ijk                                                             
+Radha           ijk                                                             
+
+6 rows selected.
+
+SQL> select p_loc from project join emp06 on emp06.dept_no=project.p_no where fname='gabbar';
+select p_loc from project join emp06 on emp06.dept_no=project.p_no where fname='gabbar'
+                                                                         *
+ERROR at line 1:
+ORA-00904: "FNAME": invalid identifier 
+
+
+SQL> select p_loc from project join emp06 on emp06.dept_no=project.p_no where f_name='gabbar';
+
+no rows selected
+
+SQL> select p_loc from emp06 join project on emp06.dept_no=project.p_no where fname='gabbar';
+select p_loc from emp06 join project on emp06.dept_no=project.p_no where fname='gabbar'
+                                                                         *
+ERROR at line 1:
+ORA-00904: "FNAME": invalid identifier 
+
+
+SQL> commit
+  2  ;
+
+Commit complete.
+
+SQL> spool off;

@@ -1,0 +1,187 @@
+SQL> select sysdate from dual;
+
+SYSDATE                                                                         
+---------                                                                       
+21-MAR-23                                                                       
+
+SQL> select power(10,2);
+select power(10,2)
+                 *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select power(10,2) from dual;
+
+POWER(10,2)                                                                     
+-----------                                                                     
+        100                                                                     
+
+SQL> select abs(-20) from dual;
+
+  ABS(-20)                                                                      
+----------                                                                      
+        20                                                                      
+
+SQL> select power(10,10) from dual;
+
+POWER(10,10)                                                                    
+------------                                                                    
+  1.0000E+10                                                                    
+
+SQL> select sqrt(25) from dual;
+
+  SQRT(25)                                                                      
+----------                                                                      
+         5                                                                      
+
+SQL> select round(23.565,1) from dual;
+
+ROUND(23.565,1)                                                                 
+---------------                                                                 
+           23.6                                                                 
+
+SQL> select lowercase('TRIDENT') from dual;
+select lowercase('TRIDENT') from dual
+       *
+ERROR at line 1:
+ORA-00904: "LOWERCASE": invalid identifier 
+
+
+SQL> select lower('TRIDENT') from dual;
+
+LOWER('                                                                         
+-------                                                                         
+trident                                                                         
+
+SQL> select upper(substr('geetika',1,1)) from dual;
+
+U                                                                               
+-                                                                               
+G                                                                               
+
+SQL> select length('geetika') from dual;
+
+LENGTH('GEETIKA')                                                               
+-----------------                                                               
+                7                                                               
+
+SQL> SELECT SUBSTR('ORACLE', 1, 3) AS output_string;
+SELECT SUBSTR('ORACLE', 1, 3) AS output_string
+                                             *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT SUBSTR('ORACLE', 1, 3) from dual;
+
+SUB                                                                             
+---                                                                             
+ORA                                                                             
+
+SQL> SELECT INSTR('ORACLE', 'C') from dual;
+
+INSTR('ORACLE','C')                                                             
+-------------------                                                             
+                  4                                                             
+
+SQL> select trim('    oracle', 'oracle   ') from dual;
+select trim('    oracle', 'oracle   ') from dual
+                        *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> select trim('    oracle'), trim('oracle   ') from dual;
+
+TRIM(' TRIM('                                                                   
+------ ------                                                                   
+oracle oracle                                                                   
+
+SQL> SELECT LPAD('ORACLE',10,'*') FROM DUAL;
+
+LPAD('ORAC                                                                      
+----------                                                                      
+****ORACLE                                                                      
+
+SQL> SELECT LPAD('ORACLE',5,'*') FROM DUAL;
+
+LPAD(                                                                           
+-----                                                                           
+ORACL                                                                           
+
+SQL> SELECT LPAD('ORACLE',8,'*') FROM DUAL;
+
+LPAD('OR                                                                        
+--------                                                                        
+**ORACLE                                                                        
+
+SQL> SELECT RPAD('ORACLE',8,'*') FROM DUAL;
+
+RPAD('OR                                                                        
+--------                                                                        
+ORACLE**                                                                        
+
+SQL> SELECT MONTH(DATEADD(month, -1, GETDATE())) from dual;
+SELECT MONTH(DATEADD(month, -1, GETDATE())) from dual
+       *
+ERROR at line 1:
+ORA-00904: "MONTH": invalid identifier 
+
+
+SQL> select months_between(01-01-07, 01-05-07) from dual;
+select months_between(01-01-07, 01-05-07) from dual
+                           *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected DATE got NUMBER 
+
+
+SQL> select months_between(01-jan-07, 01-may-07) from dual;
+select months_between(01-jan-07, 01-may-07) from dual
+                                    *
+ERROR at line 1:
+ORA-00904: "MAY": invalid identifier 
+
+
+SQL> select months_between('01-jan-07', '01-may-07') from dual;
+
+MONTHS_BETWEEN('01-JAN-07','01-MAY-07')                                         
+---------------------------------------                                         
+                                     -4                                         
+
+SQL> select round(56.23,-1), round(56.23,-2), round(56.23,-3) from dual;
+
+ROUND(56.23,-1) ROUND(56.23,-2) ROUND(56.23,-3)                                 
+--------------- --------------- ---------------                                 
+             60             100               0                                 
+
+SQL> select mod(1600,300) from dual;
+
+MOD(1600,300)                                                                   
+-------------                                                                   
+          100                                                                   
+
+SQL> select max(salary) from emp06;
+
+MAX(SALARY)                                                                     
+-----------                                                                     
+      90000                                                                     
+
+SQL> select min(salary) from emp06;
+
+MIN(SALARY)                                                                     
+-----------                                                                     
+      30000           
+
+SQL> spool off;
+SQL> select last_day(add_months(sysdate, -1)) from dual;
+
+LAST_DAY(
+---------
+28-FEB-23                                                          
+
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off;

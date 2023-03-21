@@ -1,0 +1,514 @@
+SQL> create table emp(eimpid number, f_name varchar2(10), lname varchar2(10), job_type varchar2(15), salary number, commision number, dept varchar2(15), manager_id number, doj date);
+create table emp(eimpid number, f_name varchar2(10), lname varchar2(10), job_type varchar2(15), salary number, commision number, dept varchar2(15), manager_id number, doj date)
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> create table emp_table(eimpid number, f_name varchar2(10), lname varchar2(10), job_type varchar2(15), salary number, commision number, dept varchar2(15), manager_id number, doj date);
+
+Table created.
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', 'job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 1
+Enter value for f_name: arun
+Enter value for l_name: 
+Enter value for salary: 
+Enter value for commision: 
+Enter value for dept: 
+Enter value for manager_id: 
+Enter value for doj: 
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', 'job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(1, 'arun', '', 'job_type', , , '', , '')
+insert into emp_table values(1, 'arun', '', 'job_type', , , '', , '')
+                                                        *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', 'job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 1
+Enter value for f_name: arun
+Enter value for l_name: null
+Enter value for salary: 
+Enter value for commision: 
+Enter value for dept: 
+Enter value for manager_id: 
+Enter value for doj: 
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', 'job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(1, 'arun', 'null', 'job_type', , , '', , '')
+insert into emp_table values(1, 'arun', 'null', 'job_type', , , '', , '')
+                                                            *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 1
+Enter value for f_name: arun
+Enter value for l_name: 
+Enter value for job_type: manager
+Enter value for salary: 90000
+Enter value for commision: 
+Enter value for dept: production
+Enter value for manager_id: 
+Enter value for doj: 04-jan-1998
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(1, 'arun', '', 'manager', 90000, , 'production', , '04-jan-1998')
+insert into emp_table values(1, 'arun', '', 'manager', 90000, , 'production', , '04-jan-1998')
+                                                              *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 1
+Enter value for f_name: arun
+Enter value for l_name: 
+Enter value for job_type: manager
+Enter value for salary: 90000
+Enter value for commision: null
+Enter value for dept: production
+Enter value for manager_id: null
+Enter value for doj: 04-jan-1998
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(1, 'arun', '', 'manager', 90000, null, 'production', null, '04-jan-1998')
+
+1 row created.
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 2
+Enter value for f_name: barun
+Enter value for l_name: kumar
+Enter value for job_type: manager
+Enter value for salary: 80000
+Enter value for commision: null
+Enter value for dept: marketing
+Enter value for manager_id: null
+Enter value for doj: 09-feb-1998
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(2, 'barun', 'kumar', 'manager', 80000, null, 'marketing', null, '09-feb-1998')
+
+1 row created.
+
+SQL> select *from emp_table;
+
+    EIMPID F_NAME     LNAME      JOB_TYPE            SALARY  COMMISION          
+---------- ---------- ---------- --------------- ---------- ----------          
+DEPT            MANAGER_ID DOJ                                                  
+--------------- ---------- ---------                                            
+         1 arun                  manager              90000                     
+production                 04-JAN-98                                            
+                                                                                
+         2 barun      kumar      manager              80000                     
+marketing                  09-FEB-98                                            
+                                                                                
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 3
+Enter value for f_name: chitra
+Enter value for l_name: kapoor
+Enter value for job_type: engineer
+Enter value for salary: 60000
+Enter value for commision: null
+Enter value for dept: production
+Enter value for manager_id: null
+Enter value for doj: 08-jan-1998
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(3, 'chitra', 'kapoor', 'engineer', 60000, null, 'production', null, '08-jan-1998')
+
+1 row created.
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 4
+Enter value for f_name: dheeraj
+Enter value for l_name: mishra
+Enter value for job_type: manager
+Enter value for salary: 75000
+Enter value for commision: null
+Enter value for dept: sales
+Enter value for manager_id: 2
+Enter value for doj: 27-dec-2001
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(4, 'dheeraj', 'mishra', 'manager', 75000, null, 'sales', 2, '27-dec-2001')
+
+1 row created.
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 5
+Enter value for f_name: emma
+Enter value for l_name: 
+Enter value for job_type: engineer
+Enter value for salary: 55000
+Enter value for commision: null
+Enter value for dept: production
+Enter value for manager_id: null
+Enter value for doj: 20-march-2002
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(5, 'emma', '', 'engineer', 55000, null, 'production', null, '20-march-2002')
+
+1 row created.
+
+SQL> 
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 6
+Enter value for f_name: floki
+Enter value for l_name: dutt
+Enter value for job_type: accountant
+Enter value for salary: 70000
+Enter value for commision: null
+Enter value for dept: accounts
+Enter value for manager_id: null
+Enter value for doj: 16-july-2000
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(6, 'floki', 'dutt', 'accountant', 70000, null, 'accounts', null, '16-july-2000')
+
+1 row created.
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 7
+Enter value for f_name: dheeraj
+Enter value for l_name: kumar
+Enter value for job_type: clerk
+Enter value for salary: 40000
+Enter value for commision: null
+Enter value for dept: accounts
+Enter value for manager_id: 6
+Enter value for doj: 01-july-2016
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(7, 'dheeraj', 'kumar', 'clerk', 40000, null, 'accounts', 6, '01-july-2016')
+
+1 row created.
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 8
+Enter value for f_name: saul
+Enter value for l_name: good
+Enter value for job_type: engineer
+Enter value for salary: 60000
+Enter value for commision: null
+Enter value for dept: rnd
+Enter value for manager_id: null
+Enter value for doj: 06-sep-2014
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(8, 'saul', 'good', 'engineer', 60000, null, 'rnd', null, '06-sep-2014')
+
+1 row created.
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 9
+Enter value for f_name: mou
+Enter value for l_name: 
+Enter value for job_type: clerk
+Enter value for salary: 30000
+Enter value for commision: null
+Enter value for dept: sales
+Enter value for manager_id: 4
+Enter value for doj: 08-mar-2018
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(9, 'mou', '', 'clerk', 30000, null, 'sales', 4, '08-mar-2018')
+
+1 row created.
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 10
+Enter value for f_name: sunny
+Enter value for l_name: deol
+Enter value for job_type: salesman
+Enter value for salary: 20000
+Enter value for commision: 10000
+Enter value for dept: marketing
+Enter value for manager_id: null
+Enter value for doj: 31-mar-01
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(10, 'sunny', 'deol', 'salesman', 20000, 10000, 'marketing', null, '31-mar-01')
+
+1 row created.
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 11
+Enter value for f_name: bobby
+Enter value for l_name: deol
+Enter value for job_type: engineer
+Enter value for salary: 35000
+Enter value for commision: null
+Enter value for dept: rnd
+Enter value for manager_id: 8
+Enter value for doj: 17-oct-17
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(11, 'bobby', 'deol', 'engineer', 35000, null, 'rnd', 8, '17-oct-17')
+
+1 row created.
+
+SQL> insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj');
+Enter value for emp_id: 12
+Enter value for f_name: amir
+Enter value for l_name: khan
+Enter value for job_type: salesman
+Enter value for salary: 15000
+Enter value for commision: null
+Enter value for dept: marketing
+Enter value for manager_id: null
+Enter value for doj: 11-jan-13
+old   1: insert into emp_table values(&emp_id, '&f_name', '&l_name', '&job_type', &salary, &commision, '&dept', &manager_id, '&doj')
+new   1: insert into emp_table values(12, 'amir', 'khan', 'salesman', 15000, null, 'marketing', null, '11-jan-13')
+
+1 row created.
+
+SQL> set line 200;
+SQL> select *from emp_table;
+
+    EIMPID F_NAME     LNAME      JOB_TYPE            SALARY  COMMISION DEPT            MANAGER_ID DOJ                                                                                                   
+---------- ---------- ---------- --------------- ---------- ---------- --------------- ---------- ---------                                                                                             
+         1 arun                  manager              90000            production                 04-JAN-98                                                                                             
+         2 barun      kumar      manager              80000            marketing                  09-FEB-98                                                                                             
+         3 chitra     kapoor     engineer             60000            production                 08-JAN-98                                                                                             
+         4 dheeraj    mishra     manager              75000            sales                    2 27-DEC-01                                                                                             
+         5 emma                  engineer             55000            production                 20-MAR-02                                                                                             
+         6 floki      dutt       accountant           70000            accounts                   16-JUL-00                                                                                             
+         7 dheeraj    kumar      clerk                40000            accounts                 6 01-JUL-16                                                                                             
+         8 saul       good       engineer             60000            rnd                        06-SEP-14                                                                                             
+         9 mou                   clerk                30000            sales                    4 08-MAR-18                                                                                             
+        10 sunny      deol       salesman             20000      10000 marketing                  31-MAR-01                                                                                             
+        11 bobby      deol       engineer             35000            rnd                      8 17-OCT-17                                                                                             
+
+    EIMPID F_NAME     LNAME      JOB_TYPE            SALARY  COMMISION DEPT            MANAGER_ID DOJ                                                                                                   
+---------- ---------- ---------- --------------- ---------- ---------- --------------- ---------- ---------                                                                                             
+        12 amir       khan       salesman             15000            marketing                  11-JAN-13                                                                                             
+
+12 rows selected.
+
+SQL> set line 100;
+SQL> select *from emp_table;
+
+    EIMPID F_NAME     LNAME      JOB_TYPE            SALARY  COMMISION DEPT            MANAGER_ID   
+---------- ---------- ---------- --------------- ---------- ---------- --------------- ----------   
+DOJ                                                                                                 
+---------                                                                                           
+         1 arun                  manager              90000            production                   
+04-JAN-98                                                                                           
+                                                                                                    
+         2 barun      kumar      manager              80000            marketing                    
+09-FEB-98                                                                                           
+                                                                                                    
+         3 chitra     kapoor     engineer             60000            production                   
+08-JAN-98                                                                                           
+                                                                                                    
+
+    EIMPID F_NAME     LNAME      JOB_TYPE            SALARY  COMMISION DEPT            MANAGER_ID   
+---------- ---------- ---------- --------------- ---------- ---------- --------------- ----------   
+DOJ                                                                                                 
+---------                                                                                           
+         4 dheeraj    mishra     manager              75000            sales                    2   
+27-DEC-01                                                                                           
+                                                                                                    
+         5 emma                  engineer             55000            production                   
+20-MAR-02                                                                                           
+                                                                                                    
+         6 floki      dutt       accountant           70000            accounts                     
+16-JUL-00                                                                                           
+                                                                                                    
+
+    EIMPID F_NAME     LNAME      JOB_TYPE            SALARY  COMMISION DEPT            MANAGER_ID   
+---------- ---------- ---------- --------------- ---------- ---------- --------------- ----------   
+DOJ                                                                                                 
+---------                                                                                           
+         7 dheeraj    kumar      clerk                40000            accounts                 6   
+01-JUL-16                                                                                           
+                                                                                                    
+         8 saul       good       engineer             60000            rnd                          
+06-SEP-14                                                                                           
+                                                                                                    
+         9 mou                   clerk                30000            sales                    4   
+08-MAR-18                                                                                           
+                                                                                                    
+
+    EIMPID F_NAME     LNAME      JOB_TYPE            SALARY  COMMISION DEPT            MANAGER_ID   
+---------- ---------- ---------- --------------- ---------- ---------- --------------- ----------   
+DOJ                                                                                                 
+---------                                                                                           
+        10 sunny      deol       salesman             20000      10000 marketing                    
+31-MAR-01                                                                                           
+                                                                                                    
+        11 bobby      deol       engineer             35000            rnd                      8   
+17-OCT-17                                                                                           
+                                                                                                    
+        12 amir       khan       salesman             15000            marketing                    
+11-JAN-13                                                                                           
+                                                                                                    
+
+12 rows selected.
+
+SQL> set line 50;
+SQL> select *from emp_table;
+
+    EIMPID F_NAME     LNAME      JOB_TYPE         
+---------- ---------- ---------- ---------------  
+    SALARY  COMMISION DEPT            MANAGER_ID  
+---------- ---------- --------------- ----------  
+DOJ                                               
+---------                                         
+         1 arun                  manager          
+     90000            production                  
+04-JAN-98                                         
+                                                  
+         2 barun      kumar      manager          
+     80000            marketing                   
+09-FEB-98                                         
+
+    EIMPID F_NAME     LNAME      JOB_TYPE         
+---------- ---------- ---------- ---------------  
+    SALARY  COMMISION DEPT            MANAGER_ID  
+---------- ---------- --------------- ----------  
+DOJ                                               
+---------                                         
+                                                  
+         3 chitra     kapoor     engineer         
+     60000            production                  
+08-JAN-98                                         
+                                                  
+         4 dheeraj    mishra     manager          
+     75000            sales                    2  
+
+    EIMPID F_NAME     LNAME      JOB_TYPE         
+---------- ---------- ---------- ---------------  
+    SALARY  COMMISION DEPT            MANAGER_ID  
+---------- ---------- --------------- ----------  
+DOJ                                               
+---------                                         
+27-DEC-01                                         
+                                                  
+         5 emma                  engineer         
+     55000            production                  
+20-MAR-02                                         
+                                                  
+         6 floki      dutt       accountant       
+
+    EIMPID F_NAME     LNAME      JOB_TYPE         
+---------- ---------- ---------- ---------------  
+    SALARY  COMMISION DEPT            MANAGER_ID  
+---------- ---------- --------------- ----------  
+DOJ                                               
+---------                                         
+     70000            accounts                    
+16-JUL-00                                         
+                                                  
+         7 dheeraj    kumar      clerk            
+     40000            accounts                 6  
+01-JUL-16                                         
+                                                  
+
+    EIMPID F_NAME     LNAME      JOB_TYPE         
+---------- ---------- ---------- ---------------  
+    SALARY  COMMISION DEPT            MANAGER_ID  
+---------- ---------- --------------- ----------  
+DOJ                                               
+---------                                         
+         8 saul       good       engineer         
+     60000            rnd                         
+06-SEP-14                                         
+                                                  
+         9 mou                   clerk            
+     30000            sales                    4  
+08-MAR-18                                         
+
+    EIMPID F_NAME     LNAME      JOB_TYPE         
+---------- ---------- ---------- ---------------  
+    SALARY  COMMISION DEPT            MANAGER_ID  
+---------- ---------- --------------- ----------  
+DOJ                                               
+---------                                         
+                                                  
+        10 sunny      deol       salesman         
+     20000      10000 marketing                   
+31-MAR-01                                         
+                                                  
+        11 bobby      deol       engineer         
+     35000            rnd                      8  
+
+    EIMPID F_NAME     LNAME      JOB_TYPE         
+---------- ---------- ---------- ---------------  
+    SALARY  COMMISION DEPT            MANAGER_ID  
+---------- ---------- --------------- ----------  
+DOJ                                               
+---------                                         
+17-OCT-17                                         
+                                                  
+        12 amir       khan       salesman         
+     15000            marketing                   
+11-JAN-13                                         
+                                                  
+
+12 rows selected.
+
+SQL> set line 300;
+SQL> select *from emp_table;
+
+    EIMPID F_NAME     LNAME      JOB_TYPE            SALARY  COMMISION DEPT            MANAGER_ID DOJ                                                                                                                                                                                                       
+---------- ---------- ---------- --------------- ---------- ---------- --------------- ---------- ---------                                                                                                                                                                                                 
+         1 arun                  manager              90000            production                 04-JAN-98                                                                                                                                                                                                 
+         2 barun      kumar      manager              80000            marketing                  09-FEB-98                                                                                                                                                                                                 
+         3 chitra     kapoor     engineer             60000            production                 08-JAN-98                                                                                                                                                                                                 
+         4 dheeraj    mishra     manager              75000            sales                    2 27-DEC-01                                                                                                                                                                                                 
+         5 emma                  engineer             55000            production                 20-MAR-02                                                                                                                                                                                                 
+         6 floki      dutt       accountant           70000            accounts                   16-JUL-00                                                                                                                                                                                                 
+         7 dheeraj    kumar      clerk                40000            accounts                 6 01-JUL-16                                                                                                                                                                                                 
+         8 saul       good       engineer             60000            rnd                        06-SEP-14                                                                                                                                                                                                 
+         9 mou                   clerk                30000            sales                    4 08-MAR-18                                                                                                                                                                                                 
+        10 sunny      deol       salesman             20000      10000 marketing                  31-MAR-01                                                                                                                                                                                                 
+        11 bobby      deol       engineer             35000            rnd                      8 17-OCT-17                                                                                                                                                                                                 
+
+    EIMPID F_NAME     LNAME      JOB_TYPE            SALARY  COMMISION DEPT            MANAGER_ID DOJ                                                                                                                                                                                                       
+---------- ---------- ---------- --------------- ---------- ---------- --------------- ---------- ---------                                                                                                                                                                                                 
+        12 amir       khan       salesman             15000            marketing                  11-JAN-13                                                                                                                                                                                                 
+
+12 rows selected.
+
+SQL> select dept, avg (salary) from emp_table group by dept;
+
+DEPT            AVG(SALARY)                                                                                                                                                                                                                                                                                 
+--------------- -----------                                                                                                                                                                                                                                                                                 
+accounts              55000                                                                                                                                                                                                                                                                                 
+production       68333.3333                                                                                                                                                                                                                                                                                 
+sales                 52500                                                                                                                                                                                                                                                                                 
+marketing        38333.3333                                                                                                                                                                                                                                                                                 
+rnd                   47500                                                                                                                                                                                                                                                                                 
+
+SQL> select job_type, avg (salary) from emp_table group by dept;
+select job_type, avg (salary) from emp_table group by dept
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> select job_type, avg (salary) from emp_table group by job_type;
+
+JOB_TYPE        AVG(SALARY)                                                                                                                                                                                                                                                                                 
+--------------- -----------                                                                                                                                                                                                                                                                                 
+salesman              17500                                                                                                                                                                                                                                                                                 
+engineer              52500                                                                                                                                                                                                                                                                                 
+accountant            70000                                                                                                                                                                                                                                                                                 
+clerk                 35000                                                                                                                                                                                                                                                                                 
+manager          81666.6667                                                                                                                                                                                                                                                                                 
+
+SQL> select dept, avg (salary) from emp_table group by dept having avg(salary)>40000;
+
+DEPT            AVG(SALARY)                                                                                                                                                                                                                                                                                 
+--------------- -----------                                                                                                                                                                                                                                                                                 
+accounts              55000                                                                                                                                                                                                                                                                                 
+production       68333.3333                                                                                                                                                                                                                                                                                 
+sales                 52500                                                                                                                                                                                                                                                                                 
+rnd                   47500                                                                                                                                                                                                                                                                                 
+
+SQL> select dept, avg (salary) from emp_table group by dept having avg(salary)>55000;
+
+DEPT            AVG(SALARY)                                                                                                                                                                                                                                                                                 
+--------------- -----------                                                                                                                                                                                                                                                                                 
+production       68333.3333                                                                                                                                                                                                                                                                                 
+
+SQL> commit
+  2  ;
+
+Commit complete.
+
+SQL> spool off
