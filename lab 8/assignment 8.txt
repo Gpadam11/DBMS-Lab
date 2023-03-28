@@ -1,0 +1,410 @@
+SQL> create table sailors(sid number, sname varchar2(15), rating number, age number);
+
+Table created.
+
+SQL> insert into sailors values(&sid, '&sname', &rating, &age);
+Enter value for sid: 22
+Enter value for sname: dustin
+Enter value for rating: 7
+Enter value for age: 45
+old   1: insert into sailors values(&sid, '&sname', &rating, &age)
+new   1: insert into sailors values(22, 'dustin', 7, 45)
+
+1 row created.
+
+SQL> insert into sailors values(&sid, '&sname', &rating, &age);
+Enter value for sid: 29
+Enter value for sname: Brutus
+Enter value for rating: 1
+Enter value for age: 33
+old   1: insert into sailors values(&sid, '&sname', &rating, &age)
+new   1: insert into sailors values(29, 'Brutus', 1, 33)
+
+1 row created.
+
+SQL> insert into sailors values(&sid, '&sname', &rating, &age);
+Enter value for sid: 31
+Enter value for sname: Lubber
+Enter value for rating: 8
+Enter value for age: 55.5
+old   1: insert into sailors values(&sid, '&sname', &rating, &age)
+new   1: insert into sailors values(31, 'Lubber', 8, 55.5)
+
+1 row created.
+
+SQL> insert into sailors values(&sid, '&sname', &rating, &age);
+Enter value for sid: 32
+Enter value for sname: andy
+Enter value for rating: 8
+Enter value for age: 25.5
+old   1: insert into sailors values(&sid, '&sname', &rating, &age)
+new   1: insert into sailors values(32, 'andy', 8, 25.5)
+
+1 row created.
+
+SQL> insert into sailors values(&sid, '&sname', &rating, &age);
+Enter value for sid: 58
+Enter value for sname: rusty
+Enter value for rating: 10
+Enter value for age: 35
+old   1: insert into sailors values(&sid, '&sname', &rating, &age)
+new   1: insert into sailors values(58, 'rusty', 10, 35)
+
+1 row created.
+
+SQL> insert into sailors values(&sid, '&sname', &rating, &age);
+Enter value for sid: 64
+Enter value for sname: horatio
+Enter value for rating: 7
+Enter value for age: 35
+old   1: insert into sailors values(&sid, '&sname', &rating, &age)
+new   1: insert into sailors values(64, 'horatio', 7, 35)
+
+1 row created.
+
+SQL> insert into sailors values(&sid, '&sname', &rating, &age);
+Enter value for sid: 71
+Enter value for sname: zorba
+Enter value for rating: 10
+Enter value for age: 16
+old   1: insert into sailors values(&sid, '&sname', &rating, &age)
+new   1: insert into sailors values(71, 'zorba', 10, 16)
+
+1 row created.
+
+SQL> insert into sailors values(&sid, '&sname', &rating, &age);
+Enter value for sid: 74
+Enter value for sname: horatio
+Enter value for rating: 9
+Enter value for age: 40
+old   1: insert into sailors values(&sid, '&sname', &rating, &age)
+new   1: insert into sailors values(74, 'horatio', 9, 40)
+
+1 row created.
+
+SQL> insert into sailors values(&sid, '&sname', &rating, &age);
+Enter value for sid: 85
+Enter value for sname: art
+Enter value for rating: 3
+Enter value for age: 25.5
+old   1: insert into sailors values(&sid, '&sname', &rating, &age)
+new   1: insert into sailors values(85, 'art', 3, 25.5)
+
+1 row created.
+
+SQL> insert into sailors values(&sid, '&sname', &rating, &age);
+Enter value for sid: 95
+Enter value for sname: bob
+Enter value for rating: 3
+Enter value for age: 63.5
+old   1: insert into sailors values(&sid, '&sname', &rating, &age)
+new   1: insert into sailors values(95, 'bob', 3, 63.5)
+
+1 row created.
+
+SQL> create table boats(bid number, bname varchar2(15), color varchar2(10));
+
+Table created.
+
+SQL> insert into boats values(&bid, '&bname', '&color')
+  2  ;
+Enter value for bid: 101
+Enter value for bname: interlake
+Enter value for color: blue
+old   1: insert into boats values(&bid, '&bname', '&color')
+new   1: insert into boats values(101, 'interlake', 'blue')
+
+1 row created.
+
+SQL> insert into boats values(&bid, '&bname', '&color');
+Enter value for bid: 
+Enter value for bname: 12
+Enter value for color: 
+old   1: insert into boats values(&bid, '&bname', '&color')
+new   1: insert into boats values(, '12', '')
+insert into boats values(, '12', '')
+                         *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> insert into boats values(&bid, '&bname', '&color');
+Enter value for bid: 102
+Enter value for bname: interlake
+Enter value for color: red
+old   1: insert into boats values(&bid, '&bname', '&color')
+new   1: insert into boats values(102, 'interlake', 'red')
+
+1 row created.
+
+SQL> insert into boats values(&bid, '&bname', '&color');
+Enter value for bid: 103
+Enter value for bname: clipper
+Enter value for color: green
+old   1: insert into boats values(&bid, '&bname', '&color')
+new   1: insert into boats values(103, 'clipper', 'green')
+
+1 row created.
+
+SQL> insert into boats values(&bid, '&bname', '&color');
+Enter value for bid: 104
+Enter value for bname: marine
+Enter value for color: red
+old   1: insert into boats values(&bid, '&bname', '&color')
+new   1: insert into boats values(104, 'marine', 'red')
+
+1 row created.
+
+SQL> create table reserves(sid number, bid number, day date);
+
+Table created.
+
+SQL> insert into reserves values(&sid, &bid, &day);
+Enter value for sid: 22
+Enter value for bid: 101
+Enter value for day: 1998-10-10
+old   1: insert into reserves values(&sid, &bid, &day)
+new   1: insert into reserves values(22, 101, 1998-10-10)
+insert into reserves values(22, 101, 1998-10-10)
+                                            *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected DATE got NUMBER 
+
+
+SQL> insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 22
+Enter value for bid: 101
+Enter value for day: 1998-oct-10
+old   1: insert into reserves values(&sid, &bid, '&day')
+new   1: insert into reserves values(22, 101, '1998-oct-10')
+insert into reserves values(22, 101, '1998-oct-10')
+                                     *
+ERROR at line 1:
+ORA-01861: literal does not match format string 
+
+
+SQL> insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 22
+Enter value for bid: 101
+Enter value for day: 10-oct-1998
+old   1: insert into reserves values(&sid, &bid, '&day')
+new   1: insert into reserves values(22, 101, '10-oct-1998')
+
+1 row created.
+
+SQL> insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 22
+Enter value for bid: 102
+Enter value for day: 10-oct-1998
+old   1: insert into reserves values(&sid, &bid, '&day')
+new   1: insert into reserves values(22, 102, '10-oct-1998')
+
+1 row created.
+
+SQL>  insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 22
+Enter value for bid: 103
+Enter value for day: 08-oct-1998
+old   1:  insert into reserves values(&sid, &bid, '&day')
+new   1:  insert into reserves values(22, 103, '08-oct-1998')
+
+1 row created.
+
+SQL>  insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 22
+Enter value for bid: 104
+Enter value for day: 07-oct-1998
+old   1:  insert into reserves values(&sid, &bid, '&day')
+new   1:  insert into reserves values(22, 104, '07-oct-1998')
+
+1 row created.
+
+SQL>  insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 31
+Enter value for bid: 102
+Enter value for day: 10-nov-1998
+old   1:  insert into reserves values(&sid, &bid, '&day')
+new   1:  insert into reserves values(31, 102, '10-nov-1998')
+
+1 row created.
+
+SQL>  insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 31
+Enter value for bid: 103
+Enter value for day: 06-nov-1998
+old   1:  insert into reserves values(&sid, &bid, '&day')
+new   1:  insert into reserves values(31, 103, '06-nov-1998')
+
+1 row created.
+
+SQL>  insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 31
+Enter value for bid: 104
+Enter value for day: 12-nov-1998
+old   1:  insert into reserves values(&sid, &bid, '&day')
+new   1:  insert into reserves values(31, 104, '12-nov-1998')
+
+1 row created.
+
+SQL>  insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 64
+Enter value for bid: 101
+Enter value for day: 05-sept-1998
+old   1:  insert into reserves values(&sid, &bid, '&day')
+new   1:  insert into reserves values(64, 101, '05-sept-1998')
+ insert into reserves values(64, 101, '05-sept-1998')
+                                      *
+ERROR at line 1:
+ORA-01841: (full) year must be between -4713 and +9999, and not be 0 
+
+
+SQL>  insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 64
+Enter value for bid: 101
+Enter value for day: 05-sep-1998
+old   1:  insert into reserves values(&sid, &bid, '&day')
+new   1:  insert into reserves values(64, 101, '05-sep-1998')
+
+1 row created.
+
+SQL>  insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 64
+Enter value for bid: 102
+Enter value for day: 08-sep-1998
+old   1:  insert into reserves values(&sid, &bid, '&day')
+new   1:  insert into reserves values(64, 102, '08-sep-1998')
+
+1 row created.
+
+SQL>  insert into reserves values(&sid, &bid, '&day');
+Enter value for sid: 74
+Enter value for bid: 103
+Enter value for day: 08-sep-1998
+old   1:  insert into reserves values(&sid, &bid, '&day')
+new   1:  insert into reserves values(74, 103, '08-sep-1998')
+
+1 row created.
+
+SQL> desc reserves;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                                NUMBER
+ BID                                                NUMBER
+ DAY                                                DATE
+
+SQL> select *from reserves;
+
+       SID        BID DAY                                                       
+---------- ---------- ---------                                                 
+        22        101 10-OCT-98                                                 
+        22        102 10-OCT-98                                                 
+        22        103 08-OCT-98                                                 
+        22        104 07-OCT-98                                                 
+        31        102 10-NOV-98                                                 
+        31        103 06-NOV-98                                                 
+        31        104 12-NOV-98                                                 
+        64        101 05-SEP-98                                                 
+        64        102 08-SEP-98                                                 
+        74        103 08-SEP-98                                                 
+
+10 rows selected.
+
+SQL> select sname from sailors s, reserves r where s.sid=r.sid and r.bid=103;
+
+SNAME                                                                           
+---------------                                                                 
+dustin                                                                          
+Lubber                                                                          
+horatio                                                                         
+
+SQL> select sid from(select bid from(select bid from boats where color='red'));
+select sid from(select bid from(select bid from boats where color='red'))
+       *
+ERROR at line 1:
+ORA-00904: "SID": invalid identifier 
+
+
+SQL> select bid from(select bid from boats where color='red'));
+select bid from(select bid from boats where color='red'))
+                                                        *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select bid from(select bid from boats where color='red');
+
+       BID                                                                      
+----------                                                                      
+       102                                                                      
+       104                                                                      
+
+SQL> select bid from reserves(select bid from boats where color='red');
+select bid from reserves(select bid from boats where color='red')
+                        *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select bid from reserves(select bid from boats where color='red'));
+select bid from reserves(select bid from boats where color='red'))
+                        *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select color from sailors s, boat b, reserves r where s.sid=r.sid and b.bid=r.bid and s.sid=31;
+select color from sailors s, boat b, reserves r where s.sid=r.sid and b.bid=r.bid and s.sid=31
+                             *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select color from sailors s, boats b, reserves r where s.sid=r.sid and b.bid=r.bid and s.sid=31;
+
+COLOR                                                                           
+----------                                                                      
+red                                                                             
+green                                                                           
+red                                                                             
+
+SQL> select sid from reserves where bid in(select bid from boats where color='red');
+
+       SID                                                                      
+----------                                                                      
+        64                                                                      
+        31                                                                      
+        22                                                                      
+        31                                                                      
+        22                                                                      
+
+SQL> select s.name
+  2  from sailors s, reserves r where s.sid=r.sid;
+select s.name
+       *
+ERROR at line 1:
+ORA-00904: "S"."NAME": invalid identifier 
+
+
+SQL> select sname
+  2  from sailors s, reserves r where s.sid=r.sid;
+
+SNAME                                                                           
+---------------                                                                 
+dustin                                                                          
+dustin                                                                          
+dustin                                                                          
+dustin                                                                          
+Lubber                                                                          
+Lubber                                                                          
+Lubber                                                                          
+horatio                                                                         
+horatio                                                                         
+horatio                                                                         
+
+10 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off
